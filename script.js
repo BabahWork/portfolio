@@ -74,12 +74,13 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 const logs = [
-    "> Loading modules...",
-    "> Connecting to database: OK",
-    "> Optimization: 98%",
-    "> Deploying CloudSnap...",
-    "> Status: Online"
+    "> Initializing BabahWork environment...",
+    "> Fetching module dependencies...",
+    "> CDE core services: online",
+    "> Ready for advanced development.",
+    "> Status: Operational // BabahWork"
 ];
+
 let logIdx = 0;
 function typeLog() {
     if (logIdx < logs.length) {
@@ -88,7 +89,7 @@ function typeLog() {
         p.innerHTML = logs[logIdx];
         document.getElementById('terminalBody').appendChild(p);
         logIdx++;
-        setTimeout(typeLog, 1500);
+        setTimeout(typeLog, 1200);
     }
 }
 typeLog();

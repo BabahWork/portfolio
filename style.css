@@ -365,33 +365,50 @@ footer {
     border: 1px solid var(--glass-border);
 }
 
+/* Улучшенные стили для превью CDE */
+.cde-preview {
+    position: relative;
+    width: 100%;
+    max-width: 100%; /* Гарантируем, что не выйдет за границы карточки */
+    height: 350px;   /* Фиксированная высота для стабильности на мобилках и десктопе */
+    border-radius: 24px;
+    overflow: hidden;
+    margin-top: 25px;
+    border: 1px solid var(--glass-border);
+    background: #000; /* Черный фон на случай долгой загрузки картинки */
+}
+
 .cde-preview img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Это заставит картинку вписаться в блок без искажений */
-    object-position: top; /* Показывать верхнюю часть редактора */
+    object-fit: cover;    /* Картинка заполняет блок без искажений */
+    object-position: top center; /* Приоритет на верхнюю часть (меню редактора) */
     display: block;
+    filter: brightness(0.7) blur(1px); /* Делаем чуть темнее для читаемости текста */
+    transition: all 0.5s ease;
 }
 
 .cde-preview:hover img {
-    filter: blur(0) grayscale(0);
+    filter: brightness(1) blur(0);
+    transform: scale(1.02); /* Легкий зум при наведении */
 }
 
 .coming-soon-overlay {
     position: absolute;
     inset: 0;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.4);
     color: #fff;
-    font-size: 1.8rem;
+    font-size: clamp(1.2rem, 4vw, 2rem);
     font-weight: 800;
-    letter-spacing: 3px;
-    text-shadow: 0 0 10px rgba(0,242,254,0.5);
-    opacity: 1;
-    transition: opacity 0.3s ease;
+    letter-spacing: 4px;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    z-index: 2;
     pointer-events: none;
+    transition: opacity 0.4s ease;
 }
 
 .cde-preview:hover .coming-soon-overlay {

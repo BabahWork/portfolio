@@ -1,20 +1,18 @@
-// Ждем полной загрузки DOM, чтобы не было ошибок "null"
 document.addEventListener('DOMContentLoaded', () => {
+    // 1. Плавный скролл только для ПК
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    let lenis;
 
-    // 1. Инициализация Lenis (Плавный скролл)
-    const lenis = new Lenis({ 
-        duration: 1.2, 
-        wheelMultiplier: 1.1,
-        smoothWheel: true
-    });
-
-    function raf(time) {
-        lenis.raf(time);
+    if (!isMobile) {
+        lenis = new Lenis({ duration: 1.2, wheelMultiplier: 1.1 });
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
         requestAnimationFrame(raf);
     }
-    requestAnimationFrame(raf);
 
-    // 2. CANVAS BACKGROUND
+    // 2. Оптимизированный Canvas
     const canvas = document.getElementById('bg-canvas');
     if (canvas) {
         const ctx = canvas.getContext('2d');
@@ -24,7 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
         function initCanvas() {
             width = canvas.width = window.innerWidth;
             height = canvas.height = window.innerHeight;
-            createParticles();
+            // На мобилках в 3 раза меньше частиц
+            createParticles(isMobile ? 40 : 120);
         }
 
         class Particle {
@@ -32,25 +31,25 @@ document.addEventListener('DOMContentLoaded', () => {
             reset() {
                 this.x = Math.random() * width;
                 this.y = Math.random() * height;
-                this.size = Math.random() * 1.5 + 0.5;
+                this.size = Math.random() * (isMobile ? 1 : 1.5) + 0.5;
                 this.baseX = this.x;
                 this.baseY = this.y;
-                this.density = (Math.random() * 30) + 1;
-                this.opacity = Math.random() * 0.4;
+                this.density = (Math.random() * 20) + 1;
+                this.opacity = Math.random() * 0.3;
             }
             update() {
                 let dx = mouse.x - this.x;
                 let dy = mouse.y - this.y;
                 let distance = Math.sqrt(dx * dx + dy * dy);
-                let maxDistance = 150;
+                let maxDistance = isMobile ? 80 : 150; // Меньше радиус на телефоне
 
                 if (distance < maxDistance) {
                     let force = (maxDistance - distance) / maxDistance;
                     this.x -= (dx / distance) * force * this.density;
                     this.y -= (dy / distance) * force * this.density;
                 } else {
-                    if (this.x !== this.baseX) this.x -= (this.x - this.baseX) / 20;
-                    if (this.y !== this.baseY) this.y -= (this.y - this.baseY) / 20;
+                    if (this.x !== this.baseX) this.x -= (this.x - this.baseX) / 30;
+                    if (this.y !== this.baseY) this.y -= (this.y - this.baseY) / 30;
                 }
             }
             draw() {
@@ -61,9 +60,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        function createParticles() {
+        function createParticles(count) {
             particles = [];
-            for (let i = 0; i < 150; i++) particles.push(new Particle());
+            for (let i = 0; i < count; i++) particles.push(new Particle());
         }
 
         function animate() {
@@ -74,92 +73,50 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         window.addEventListener('resize', initCanvas);
-        window.addEventListener('mousemove', (e) => { 
-            mouse.x = e.clientX; 
-            mouse.y = e.clientY; 
-        });
-
+        if (!isMobile) {
+            window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
+        }
         initCanvas();
         animate();
     }
 
-    // 3. КУРСОР И МАГНИТНЫЕ ЭФФЕКТЫ
-    const cursor = document.querySelector('.cursor');
-    if (cursor) {
+    // 3. Параллакс (адаптивный)
+    const handleScroll = () => {
+        const scrollY = isMobile ? window.scrollY : lenis.scroll;
+
+        document.querySelectorAll('.parallax-line').forEach(line => {
+            const speed = line.getAttribute('data-speed');
+            line.style.transform = `translateX(${scrollY * speed}px)`;
+        });
+
+        document.querySelectorAll('.pj-image-wrapper img').forEach(img => {
+            const rect = img.parentElement.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                const move = (rect.top - window.innerHeight / 2) * 0.1;
+                img.style.transform = `translateY(${move}px) scale(1.1)`;
+            }
+        });
+    };
+
+    if (isMobile) {
+        window.addEventListener('scroll', handleScroll);
+    } else {
+        lenis.on('scroll', handleScroll);
+    }
+
+    // 4. Скрытие курсора на мобилках
+    if (isMobile) {
+        document.querySelector('.cursor').style.display = 'none';
+        document.body.style.cursor = 'default';
+    } else {
+        const cursor = document.querySelector('.cursor');
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
         });
-
-        document.querySelectorAll('.magnetic, .pj-image-wrapper, .nav-links a').forEach(el => {
-            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-        });
     }
-
-    // 4. СКРОЛЛ-АНИМАЦИИ (Lenis)
-    lenis.on('scroll', ({ scroll }) => {
-        // Параллакс заголовков
-        document.querySelectorAll('.parallax-line').forEach(line => {
-            const speed = line.getAttribute('data-speed');
-            line.style.transform = `translateX(${scroll * speed}px)`;
-        });
-
-        // Параллакс изображений
-        document.querySelectorAll('.pj-image-wrapper img').forEach(img => {
-            const rect = img.parentElement.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom > 0) {
-                const move = (rect.top - window.innerHeight / 2) * 0.15;
-                img.style.transform = `translateY(${move}px) scale(1.15)`;
-            }
-        });
-
-        // Футер
-        const fTitle = document.querySelector('.parallax-footer');
-        if (fTitle) {
-            const fRect = fTitle.closest('footer').getBoundingClientRect();
-            if (fRect.top < window.innerHeight) {
-                const progress = (window.innerHeight - fRect.top) / window.innerHeight;
-                fTitle.style.transform = `translateX(${(1 - progress) * -200}px)`;
-                fTitle.style.opacity = Math.min(progress * 1.5, 1);
-            }
-        }
-    });
-
-    // 5. МАГНИТНЫЙ ЭФФЕКТ ДЛЯ КНОПОК
-    document.querySelectorAll('.magnetic').forEach((el) => {
-        el.addEventListener('mousemove', function(e) {
-            const rect = this.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-            this.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
-        });
-        el.addEventListener('mouseleave', function() {
-            this.style.transform = `translate(0px, 0px)`;
-        });
-    });
-
-    // 6. ПРОГРЕСС-БАР (Создаем безопасно)
-    const progressBar = document.createElement('div');
-    progressBar.className = 'scroll-progress-bar';
-    progressBar.style.cssText = `
-        position: fixed; top: 0; left: 0; width: 0%; height: 3px;
-        background: var(--accent); z-index: 10002; pointer-events: none;
-    `;
-    document.body.appendChild(progressBar);
-
-    lenis.on('scroll', (e) => {
-        const scrollPercent = (e.scroll / (document.body.scrollHeight - window.innerHeight)) * 100;
-        progressBar.style.width = scrollPercent + '%';
-    });
 });
 
-// 7. LOADER (вынесен за пределы DOMContentLoaded для надежности)
 window.addEventListener('load', () => {
-    const loader = document.getElementById('loader');
-    if (loader) {
-        setTimeout(() => {
-            loader.style.transform = 'translateY(-100%)';
-        }, 800);
-    }
+    setTimeout(() => { document.getElementById('loader').style.transform = 'translateY(-100%)'; }, 500);
 });

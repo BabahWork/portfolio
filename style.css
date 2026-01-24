@@ -62,3 +62,39 @@ nav { position: fixed; width: 100%; padding: 30px 5%; z-index: 1000; }
 .parallax-footer { font-family: var(--font-h); font-size: 14vw; line-height: 1; margin-bottom: 40px; }
 .email-big { font-family: var(--font-h); font-size: clamp(1rem, 4vw, 5rem); color: var(--accent); text-decoration: none; font-weight: 700; transition: 0.4s; }
 .email-big:hover { opacity: 0.7; }
+
+/* --- ADAPTIVE DESIGN --- */
+
+@media (max-width: 768px) {
+    /* Навигация */
+    nav { padding: 15px 5%; }
+    .nav-content { padding: 10px 20px; border-radius: 50px; }
+    .nav-links a { margin-left: 15px; font-size: 0.6rem; }
+    
+    /* Hero секция */
+    .parallax-line { font-size: 15vw; }
+    .hero-sub-wrapper { flex-direction: column; gap: 15px; text-align: center; }
+    .hero-dash { width: 30px; }
+    .hero-sub { font-size: 0.85rem; padding: 0 20px; }
+
+    /* Проекты */
+    .work-showcase { padding: 80px 5%; }
+    .pj-image-wrapper { height: 50vh; border-radius: 15px; }
+    .pj-details { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .pj-details h2 { font-size: 8vw; }
+    .pj-year { font-size: 0.8rem; }
+    .section-label { margin-bottom: 40px; }
+
+    /* Футер */
+    .parallax-footer { font-size: 18vw; }
+    .email-big { font-size: 5vw; word-break: break-all; }
+    
+    /* Отключаем кастомный курсор */
+    * { cursor: auto !important; }
+}
+
+/* Оптимизация для очень маленьких экранов */
+@media (max-width: 480px) {
+    .parallax-line { font-size: 18vw; }
+    .nav-links { display: none; } /* Скрываем ссылки в меню для чистоты */
+}

@@ -3,98 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BabahWork // Software Engineer</title>
+    <title>BABAH // DIGITAL ARCHITECT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="noise-overlay"></div>
 
-    <div class="aurora-container">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
-    </div>
+    <div id="loader"><div class="loader-circle"></div></div>
 
-    <div class="cursor-glow" id="cursorGlow"></div>
+    <canvas id="bg-canvas"></canvas>
+    <div class="noise"></div>
+    <div class="cursor"></div>
 
-    <main class="wrapper">
-        <section class="glass-header scroll-reveal">
-            <h1 class="title">BabahWork</h1>
-            <div class="badge-container">
-                <span class="status-tag">Backend Engineer</span>
-                <span class="status-tag">DevOps Enthusiast</span>
+    <nav>
+        <div class="nav-content">
+            <a href="#" class="logo">BABAH<span class="accent-dot">.</span></a>
+            <div class="nav-links">
+                <a href="#work" class="magnetic">PROJECTS</a>
+                <a href="#" class="nav-cta magnetic">CONTACT</a>
+            </div>
+        </div>
+    </nav>
+
+    <main id="content">
+        <section class="hero">
+            <div class="hero-text">
+                <div class="hero-title-wrap">
+                    <h1 class="parallax-line left" data-speed="0.25">CRAFTING</h1>
+                    <h1 class="parallax-line right outline" data-speed="-0.25">SYSTEMS</h1>
+                </div>
+                <div class="hero-sub-wrapper">
+                    <div class="hero-dash"></div>
+                    <p class="hero-sub">Digital designer focusing on high-end interaction and aesthetic interfaces.</p>
+                </div>
+            </div>
+            <div class="scroll-indicator">SCROLL</div>
+        </section>
+
+        <section id="work" class="work-showcase">
+            <div class="section-label"><span>01</span> / SELECTED WORKS</div>
+
+            <div class="showcase-item">
+                <div class="pj-image-wrapper magnetic-wrap">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1600" alt="Work 1">
+                    <div class="pj-overlay"><span>VIEW PROJECT</span></div>
+                </div>
+                <div class="pj-details">
+                    <div class="pj-title-box">
+                        <span class="pj-category">WEBGL / INTERACTIVE</span>
+                        <h2>AURA ENGINE</h2>
+                    </div>
+                    <div class="pj-year">2026</div>
+                </div>
+            </div>
+
+            <div class="showcase-item">
+                <div class="pj-image-wrapper magnetic-wrap">
+                    <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=1600" alt="Work 2">
+                    <div class="pj-overlay"><span>VIEW PROJECT</span></div>
+                </div>
+                <div class="pj-details">
+                    <div class="pj-title-box">
+                        <span class="pj-category">IDENTITY / BRANDING</span>
+                        <h2>SILICON VOID</h2>
+                    </div>
+                    <div class="pj-year">2026</div>
+                </div>
             </div>
         </section>
 
-        <div class="grid">
-            <div class="glass-card main-info scroll-reveal">
-                <span class="step">01 // CORE VISION</span>
-                <h2>Scalable. Reliable. Elegant.</h2>
-                <p>Я специализируюсь на создании высоконагруженных бэкенд-систем и автоматизации инфраструктуры. Мой подход — это написание чистого, тестируемого кода, который легко масштабируется.</p>
-            </div>
-
-            <div class="glass-card stack scroll-reveal">
-                <span class="step">02 // TECH STACK</span>
-                <div class="pills">
-                    <span>Node.js</span>
-                    <span>TypeScript</span>
-                    <span>Go</span>
-                    <span>PostgreSQL</span>
-                    <span>Redis</span>
-                    <span>Docker</span>
-                    <span>Kubernetes</span>
+        <footer class="contact-footer">
+            <div class="footer-container">
+                <h2 class="parallax-footer" data-speed="-0.4">SAY HELLO</h2>
+                <div class="email-wrapper">
+                    <a href="mailto:babahworkcompany@gmail.com" class="email-big magnetic">BABAHWORKCOMPANY@GMAIL.COM</a>
                 </div>
-            </div>
-
-            <div class="glass-card stats scroll-reveal">
-                <div class="stat-item">
-                    <span class="stat-num" data-target="250">0</span><span class="stat-plus">+</span>
-                    <p>Github Commits</p>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-num" data-target="15">0</span><span class="stat-plus"></span>
-                    <p>OSS Projects</p>
-                </div>
-            </div>
-
-            <div class="glass-card project-featured scroll-reveal">
-                <div class="shine"></div>
-                <span class="step">03 // UPCOMING PROJECT</span>
-                <div class="project-header">
-                    <h2>BabahWork CDE</h2>
-                    <span class="project-version">v0.1 // Alpha Preview</span>
-                </div>
-                <p>Моя собственная среда разработки в облаке (Cloud Development Environment). Интегрированный терминал, live-превью и поддержка нескольких языков программирования прямо в браузере.</p>
-                <div class="cde-preview">
-                    <img src="preview.png" alt="BabahWork CDE Preview" loading="lazy">
-                    <div class="coming-soon-overlay">COMING SOON</div>
-                </div>
-                <div class="btn-group">
-                    <a class="secondary-btn" disabled>View Repository</a>
-                    <button class="secondary-btn" disabled>Launch IDE (Alpha)</button>
-                </div>
-            </div>
-
-            <div class="glass-card terminal-card scroll-reveal">
-                <span class="step">04 // DEV CONSOLE</span>
-                <div class="terminal-window">
-                    <div class="terminal-header">
-                        <span class="dot red"></span>
-                        <span class="dot yellow"></span>
-                        <span class="dot green"></span>
-                    </div>
-                    <div class="terminal-body" id="terminalBody">
-                        </div>
-                </div>
-            </div>
-        </div>
-
-        <footer>
-            <p class="footer-text">© 2024 BabahWork // Full-Stack Developer Portfolio</p>
-            <div class="socials">
-                <a href="https://github.com/BabahWork">GitHub</a>
-                <a href="#">Contact</a>
             </div>
         </footer>
     </main>

@@ -55,7 +55,7 @@ html.js .reveal.delayed-2 { transition-delay: 0.4s; }
 .cursor-ring.is-active { transform: scale(1.6); border-color: var(--cyan); }
 
 /* Header */
-header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; }
+header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(5, 5, 6, 0.55); backdrop-filter: blur(14px) saturate(140%); -webkit-backdrop-filter: blur(14px) saturate(140%); border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
 .nav-inner { display: flex; justify-content: space-between; align-items: center; max-width: 1300px; margin: 0 auto; padding: clamp(16px, 2.4vw, 26px) clamp(16px, 5vw, 65px); }
 .logo { display: inline-flex; align-items: center; gap: 11px; font-family: var(--font-h); font-weight: 700; font-size: 1.05rem; letter-spacing: 1px; color: var(--text); text-decoration: none; }
 .logo span { color: var(--cyan); }

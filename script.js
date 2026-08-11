@@ -468,9 +468,12 @@ ctx.beginPath();
         }
     };
 
-    let currentLang = 'en';
-    try { currentLang = localStorage.getItem('bw-lang') || 'en'; } catch (e) {}
-    if (!i18n[currentLang]) currentLang = 'en';
+let currentLang = 'en';
+try {
+    currentLang = localStorage.getItem('bw-lang') ||
+        ((navigator.language || navigator.userLanguage || 'en').toLowerCase().startsWith('ru') ? 'ru' : 'en');
+} catch (e) {}
+if (!i18n[currentLang]) currentLang = 'en';
 
     const modal = document.getElementById('case-modal');
     const modalBody = document.getElementById('modal-body');

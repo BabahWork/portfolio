@@ -552,6 +552,7 @@ ctx.beginPath();
         if (!chips.length) chips.push('ITCH.IO');
         const tag = String(g.genre || 'GAME').toUpperCase();
         const cover = g.cover || '';
+        const slug = String(g.slug || (g.url || '').split('/').filter(Boolean).pop() || '').toLowerCase();
         const playLabel = (i18n[currentLang] || i18n.en)['games.play'];
 
         const el = document.createElement('article');
@@ -562,7 +563,7 @@ ctx.beginPath();
             '</div>' +
             '<div class="proj-info">' +
                 '<div class="proj-meta"><span class="proj-cat">' + escapeHtml(tag) + '</span><span class="proj-year">' + escapeHtml(g.year) + '</span></div>' +
-                '<h3>' + escapeHtml(g.title) + '</h3>' +
+                '<h3><a class="proj-title-link" href="' + escapeHtml(slug) + '.html">' + escapeHtml(g.title) + '</a></h3>' +
                 '<p>' + escapeHtml(g.short) + '</p>' +
                 '<div class="chip-row">' + chips.map(c => '<span class="chip">' + escapeHtml(c) + '</span>').join('') + '</div>' +
                 '<div class="link-row"><a class="text-link magnetic" href="' + escapeHtml(g.url) + '" target="_blank" rel="noopener">' + playLabel + '</a></div>' +

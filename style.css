@@ -281,14 +281,21 @@ body.modal-open { overflow: hidden; }
 
 /* --- RUSSIAN TEXT FIT (Cyrillic glyphs are wider than Latin) --- */
 html[lang="ru"] .hero-title { font-size: clamp(2.3rem, 6.4vw, 6rem); }
-html[lang="ru"] .hero-title .line { letter-spacing: 0; }
+html[lang="ru"] .hero-title .line { letter-spacing: 0; overflow-wrap: anywhere; }
 html[lang="ru"] .hero-sub { max-width: 560px; }
 html[lang="ru"] .eyebrow { white-space: normal; text-align: left; line-height: 1.6; }
-html[lang="ru"] .section-head h2 { font-size: clamp(1.5rem, 3.2vw, 2.3rem); }
+html[lang="ru"] .section-head h2 { font-size: clamp(1.5rem, 3.2vw, 2.3rem); overflow-wrap: anywhere; }
 html[lang="ru"] .contact-title { font-size: clamp(1.9rem, 5vw, 4.2rem); }
-html[lang="ru"] .contact-title .block { letter-spacing: -0.01em; }
+html[lang="ru"] .contact-title .block { letter-spacing: -0.01em; overflow-wrap: anywhere; }
 html[lang="ru"] .proj-meta .proj-cat { letter-spacing: 1.5px; }
 html[lang="ru"] .nav-links a { letter-spacing: 1px; }
+html[lang="ru"] .proj-info h3, html[lang="ru"] .wip-art-title, html[lang="ru"] .stack-item,
+html[lang="ru"] .btn-cta, html[lang="ru"] .case-title, html[lang="ru"] .gpage-title,
+html[lang="ru"] .gpage-h2, html[lang="ru"] .gpage-cta-band-title, html[lang="ru"] .gpage-cta-band-back,
+html[lang="ru"] .review-author, html[lang="ru"] .social-link, html[lang="ru"] .mobile-menu-cta {
+    overflow-wrap: anywhere;
+}
+html[lang="ru"] .case-title, html[lang="ru"] .gpage-title { word-break: break-word; }
 
 /* Game landing pages */
 .gpage-nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: clamp(16px, 2.4vw, 26px) clamp(16px, 5vw, 65px); }

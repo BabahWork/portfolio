@@ -101,6 +101,7 @@ a:focus-visible, .btn-cta:focus-visible { outline: 2px solid var(--cyan); outlin
 
 .proj-visual { height: clamp(320px, 46vh, 520px); border-radius: 20px; overflow: hidden; position: relative; border: 1px solid var(--border); transition: border-color 0.4s, box-shadow 0.5s, transform 0.2s ease-out; will-change: transform; }
 .proj-visual::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.5) 100%); }
+.lazy-bg { background-color: #0a0b12; background-image: none !important; }
 .project:hover .proj-visual { border-color: rgba(77,217,255,0.45); box-shadow: 0 30px 80px -20px rgba(77,217,255,0.15); }
 .cover-toy {
     background-image:

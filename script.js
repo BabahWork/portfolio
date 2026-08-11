@@ -174,6 +174,30 @@ ctx.beginPath();
     initMagnetic(document);
     initTilt(document);
 
+    // Lazy background covers (cards)
+    const lazyBg = (() => {
+        if (!('IntersectionObserver' in window)) return el => { el.classList.remove('lazy-bg'); };
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                const el = entry.target;
+                el.style.backgroundImage = el.dataset.bg || '';
+                el.classList.remove('lazy-bg');
+                io.unobserve(el);
+            });
+        }, { rootMargin: '300px 0px' });
+        return (el) => {
+            const bg = getComputedStyle(el).backgroundImage;
+            if (!bg || bg === 'none') return;
+            el.dataset.bg = bg;
+            el.style.backgroundImage = 'none';
+            el.classList.add('lazy-bg');
+            io.observe(el);
+        };
+    })();
+
+    document.querySelectorAll('.proj-visual').forEach(lazyBg);
+
     // Smooth anchors (Lenis-aware)
     document.querySelectorAll('a[href^="#"]').forEach(a => {
         a.addEventListener('click', (e) => {
@@ -586,6 +610,7 @@ ctx.beginPath();
             const el = buildGameCard(g, i);
             if (el) {
                 workSection.insertBefore(el, stackRow);
+                lazyBg(el.querySelector('.proj-visual'));
                 initMagnetic(el);
                 initTilt(el);
                 observeReveal(el);

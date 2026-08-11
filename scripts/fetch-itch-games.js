@@ -21,6 +21,18 @@ async function fetchJson(url) {
     return res.json();
 }
 
+async function hiResCover(url) {
+    try {
+        const res = await fetch(url, { headers: { Accept: 'text/html' } });
+        const html = await res.text();
+        const m = html.match(/content="([^"]+)" property="og:image"/);
+        return m ? m[1] : '';
+    } catch (e) {
+        console.warn('cover fetch failed for ' + url + ': ' + e.message);
+        return '';
+    }
+}
+
 async function main() {
     let data;
     try {
@@ -47,6 +59,11 @@ async function main() {
             web: !!g.web
         },
         genre: g.genre || 'GAME'
+    }));
+
+    await Promise.all(games.map(async g => {
+        const hi = await hiResCover(g.url);
+        if (hi) g.cover = hi;
     }));
 
     games.sort((a, b) =>

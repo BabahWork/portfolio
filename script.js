@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.mobile-menu-nav a').forEach(a => {
             a.classList.toggle('active', a.getAttribute('href') === '#' + activeId);
         });
-        if (!reduceMotion) parallax();
+        if (!reduceMotion && !isMobile) parallax();
     };
 
     if (isMobile || !lenis) {

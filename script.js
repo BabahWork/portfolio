@@ -53,7 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const ctx = canvas.getContext('2d');
         const scale = isMobile ? 0.4 : 0.5;
         let width, height;
-        let mouse = { x: 0, y: 0 };
         let blobs;
         const palettes = [
             { r: 77, g: 217, b: 255 },
@@ -87,15 +86,13 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.clearRect(0, 0, width, height);
             const t = time * 0.001;
             blobs.forEach((b) => {
-                const gx = b.x + (mouse.x * scale - width / 2) * 0.02;
-                const gy = b.y + (mouse.y * scale - height / 2) * 0.02;
                 const radius = b.r * (1 + 0.06 * Math.sin(t * 0.5 + b.phase * 2));
-                const g = ctx.createRadialGradient(gx, gy, 0, gx, gy, radius);
+                const g = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, radius);
                 g.addColorStop(0, `rgba(${b.pal.r},${b.pal.g},${b.pal.b},${b.alpha})`);
                 g.addColorStop(1, 'rgba(0,0,0,0)');
                 ctx.fillStyle = g;
 ctx.beginPath();
-                        ctx.arc(gx, gy, radius, 0, Math.PI * 2);
+                ctx.arc(b.x, b.y, radius, 0, Math.PI * 2);
                         ctx.fill();
                     });
         }
@@ -110,9 +107,6 @@ ctx.beginPath();
         loop.last = 0;
 
         window.addEventListener('resize', resize);
-        if (!isMobile) {
-            window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
-        }
         resize();
         if (reduceMotion) {
             paint(0);

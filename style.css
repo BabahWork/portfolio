@@ -285,7 +285,9 @@ html[lang="ru"] .nav-links a { letter-spacing: 1px; }
 .gpage-chips { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 26px; }
 .gpage-chips span { font-size: 0.65rem; letter-spacing: 1.5px; color: var(--text); border: 1px solid var(--border); padding: 7px 13px; border-radius: 100px; background: var(--surface); }
 .gpage-desc { color: var(--dim); line-height: 1.8; font-size: 1.05rem; }
-.gpage-cta { margin-top: 34px; }
+.gpage-cta { margin-top: 34px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.gpage-share { font-family: var(--font-h); font-weight: 600; font-size: 0.8rem; letter-spacing: 2px; color: var(--text); background: none; border: 1px solid var(--border); padding: 17px 26px; border-radius: 100px; cursor: pointer; transition: border-color 0.3s, color 0.3s, transform 0.3s ease; }
+.gpage-share:hover { border-color: var(--cyan); color: var(--cyan); transform: translateY(-2px); }
 .gpage-feats { max-width: 1100px; margin: clamp(50px, 8vw, 90px) auto 0; padding: 0 clamp(16px, 5vw, 65px); }
 .gpage-h2 { font-family: var(--font-h); font-size: 1.3rem; letter-spacing: 3px; color: var(--cyan); margin-bottom: 26px; }
 .gpage-feats ul { list-style: none; display: grid; gap: 14px; }

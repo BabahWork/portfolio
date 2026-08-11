@@ -194,6 +194,22 @@ a:focus-visible, .btn-cta:focus-visible { outline: 2px solid var(--cyan); outlin
 .wip-stage.is-active .wip-dot { border-color: var(--cyan); background: var(--cyan); box-shadow: 0 0 18px rgba(77, 217, 255, 0.9); }
 .wip-stage.is-active .wip-stage-label { color: var(--cyan); }
 
+/* Reviews */
+.reviews-section { padding: clamp(64px, 9vw, 120px) clamp(16px, 5vw, 65px); max-width: 1300px; margin: 0 auto; }
+.reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+.review-card { display: flex; flex-direction: column; gap: 16px; padding: 30px 28px; border: 1px solid var(--border); border-radius: 18px; background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0)); transition: border-color 0.35s, transform 0.35s, box-shadow 0.35s; }
+.review-card:hover { border-color: rgba(77, 217, 255, 0.4); transform: translateY(-4px); box-shadow: 0 30px 70px -28px rgba(77, 217, 255, 0.25); }
+.review-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.review-quote { font-family: var(--font-h); font-weight: 700; font-size: 2.6rem; line-height: 1; color: var(--violet); }
+.review-stars { color: var(--cyan); letter-spacing: 3px; font-size: 0.85rem; white-space: nowrap; }
+.review-text { flex: 1; color: var(--text); font-size: 1.02rem; line-height: 1.7; }
+.review-meta { display: flex; flex-direction: column; gap: 7px; border-top: 1px solid var(--border); padding-top: 18px; }
+.review-author { font-family: var(--font-h); font-weight: 600; font-size: 0.8rem; letter-spacing: 2px; overflow-wrap: anywhere; }
+.review-game { font-size: 0.65rem; letter-spacing: 2px; color: var(--dim); text-decoration: none; overflow-wrap: anywhere; transition: color 0.3s; }
+.review-game:hover { color: var(--cyan); }
+.reviews-foot { display: flex; justify-content: center; margin-top: 44px; }
+.reviews-foot .social-link { margin: 0; }
+
 /* Contact */
 .contact-section { min-height: 92vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: clamp(70px, 10vh, 120px) clamp(16px, 5vw, 65px) clamp(40px, 6vw, 60px); }
 .contact-title { font-family: var(--font-h); font-weight: 700; font-size: clamp(2.4rem, 8vw, 6.5rem); line-height: 1.05; letter-spacing: -0.02em; }
@@ -419,10 +435,9 @@ html[lang="ru"] .nav-links a { letter-spacing: 1px; }
     html[lang="ru"] .hero-title { font-size: clamp(1.6rem, 10vw, 2.2rem); }
 }
 @media (min-width: 1800px) {
-    .hero-inner, .work-section, .wip-section { max-width: 1500px; }
+    .hero-inner, .work-section, .wip-section, .reviews-section { max-width: 1500px; }
     .hero-title { font-size: clamp(3.2rem, 7vw, 11rem); }
-}
-@media (max-width: 768px) {
+}@media (max-width: 768px) {
     .cursor-dot, .cursor-ring { display: none; }
 }
 

@@ -1,0 +1,45 @@
+name: itch-games
+
+on:
+  schedule:
+    - cron: '0 5 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: itch-games
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Fetch games from itch.io
+        run: node scripts/fetch-itch-games.js
+        env:
+          ITCH_API_KEY: ${{ secrets.ITCH_API_KEY }}
+
+      - name: Generate game pages + sitemap
+        run: node scripts/generate-game-pages.js
+
+      - name: Commit refreshed data and generated pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet && git diff --quiet; then
+            echo "no changes"
+          else
+            git commit -m "chore: refresh games.json, generate game pages + sitemap"
+            git push
+          fi

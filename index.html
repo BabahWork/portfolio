@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BABAH WORK // INDIE GAME STUDIO</title>
+    <meta name="description" content="BABAH WORK — indie game studio. Unity / C#. Playable experiences, tools and prototypes.">
+    <meta name="theme-color" content="#050506">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%234dd9ff'/%3E%3Cstop offset='1' stop-color='%239d6bff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='%23050506'/%3E%3Cpath d='M18 20h28v6H26v8h18v6H26v10h-8z' fill='url(%23g)'/%3E%3C/svg%3E">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="BABAH WORK // INDIE GAME STUDIO">
+    <meta property="og:description" content="Indie game studio. Unity / C#. Playable experiences, tools and prototypes.">
+    <meta property="og:url" content="https://babahwork.is-a.dev/">
+    <meta property="og:site_name" content="BABAH WORK">
+    <meta property="og:image" content="https://babahwork.is-a.dev/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="BABAH WORK // INDIE GAME STUDIO">
+    <meta name="twitter:description" content="Indie game studio. Unity / C#. Playable experiences.">
+    <meta name="twitter:image" content="https://babahwork.is-a.dev/og-image.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Unbounded:wght@600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <script defer src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "BABAH WORK",
+        "description": "Indie game studio. Unity / C# developer.",
+        "email": "babahworkcompany@gmail.com",
+        "url": "https://babahwork.is-a.dev"
+    }
+    </script>
+</head>
+<body>
+
+    <div id="loader"><div class="loader-ring"></div><span class="loader-text">BABAH WORK</span></div>
+    <div class="scroll-progress" aria-hidden="true"></div>
+
+    <canvas id="aurora"></canvas>
+    <div class="noise"></div>
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+
+    <header>
+        <nav class="nav-inner">
+            <a href="#top" class="logo">BABAH<span>//</span>WORK</a>
+            <div class="nav-right">
+                <div class="lang-switch" role="group" aria-label="Language">
+                    <button type="button" class="lang-btn is-active" data-lang="en">EN</button>
+                    <span class="lang-sep">/</span>
+                    <button type="button" class="lang-btn" data-lang="ru">RU</button>
+                </div>
+                <div class="nav-links">
+                    <a href="#work" data-i18n="nav.work">WORK</a>
+                    <a href="#wip" data-i18n="nav.now">NOW</a>
+                    <a href="#contact" class="nav-cta" data-i18n="nav.contact">CONTACT</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="top" class="hero">
+            <div class="hero-inner">
+                <div class="eyebrow reveal"><span class="dot-pulse"></span><span data-i18n="hero.eyebrow">OPEN FOR COMMISSIONS&nbsp;&middot;&nbsp;UNITY / C#</span></div>
+                <h1 class="hero-title">
+                    <span class="line reveal" data-par="20" data-i18n="hero.line1">PLAYABLE.</span>
+                    <span class="line reveal grad" data-par="55" data-i18n="hero.line2">EXPERIENCES.</span>
+                </h1>
+                <p class="hero-sub reveal" data-i18n="hero.sub">
+                    BABAH WORK is an indie studio turning sharp ideas into polished Unity games — gameplay, tools and prototypes.
+                </p>
+                <div class="hero-stats reveal">
+                    <div class="stat"><span class="stat-num">03</span><span class="stat-label" data-i18n="stat.1">YEARS&nbsp;IN&nbsp;UNITY</span></div>
+                    <div class="stat-dot"></div>
+                    <div class="stat"><span class="stat-num">04</span><span class="stat-label" data-i18n="stat.2">PROJECTS</span></div>
+                    <div class="stat-dot"></div>
+                    <div class="stat"><span class="stat-num">PC·MOB</span><span class="stat-label" data-i18n="stat.3">PLATFORMS</span></div>
+                    <div class="stat-dot"></div>
+                    <div class="stat"><span class="stat-num">MINSK</span><span class="stat-label" data-i18n="stat.4">ORIGIN&nbsp;·&nbsp;BELARUS</span></div>
+                </div>
+                <div class="origin reveal">
+                    <span class="bel" data-i18n="origin.bel">З&nbsp;ГОНАРАМ&nbsp;ЗРОБЛЕНА&nbsp;Ў&nbsp;БЕЛАРУСІ</span>&nbsp;<span data-i18n="origin.meta">&middot;&nbsp;INDIE&nbsp;GAMES&nbsp;FROM&nbsp;MINSK</span>
+                </div>
+            </div>
+            <div class="scroll-cue">SCROLL&nbsp;&nbsp;&darr;</div>
+        </section>
+
+        <section id="work" class="work-section">
+            <div class="section-head reveal">
+                <span class="section-label" data-i18n="work.label">01&nbsp;&middot;&nbsp;GAMES</span>
+                <h2 data-i18n="work.head">SELECTED&nbsp;PROJECTS</h2>
+            </div>
+
+            <article class="project reveal" data-game="toy">
+                <div class="proj-visual cover-toy">
+                    <div class="proj-art">
+                        <span class="proj-art-title">TOY&nbsp;DECEIVER</span>
+                        <span class="proj-art-tag">HORROR</span>
+                    </div>
+                </div>
+                <div class="proj-info">
+                    <div class="proj-meta">
+                        <span class="proj-cat" data-i18n="games.toy.cat">PSYCHOLOGICAL&nbsp;HORROR&nbsp;/&nbsp;STRATEGY</span>
+                        <span class="proj-year">2025</span>
+                    </div>
+                    <h3><a class="proj-title-link" href="toy-deceiver.html">TOY&nbsp;DECEIVER</a></h3>
+                    <p data-i18n="games.toy.desc">A psychological horror and detective story about lies, observation and inevitability. Watch the toys, find the deceiver among them — and survive the night.</p>
+                    <div class="chip-row">
+                        <span class="chip">WINDOWS</span><span class="chip" data-i18n="games.toy.chip2">RELEASED</span><span class="chip">ITCH.IO</span>
+                    </div>
+                    <div class="link-row">
+                        <button type="button" class="text-link case-open magnetic" data-game="toy" data-i18n="games.case">CASE&nbsp;&#8599;</button>
+                        <a class="text-link magnetic" href="https://babahwork.itch.io/toy-deceiver" target="_blank" rel="noopener" data-i18n="games.play">PLAY&nbsp;ON&nbsp;ITCH.IO&nbsp;&nbsp;&rarr;</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="project project-rev reveal" data-game="threshold">
+                <div class="proj-visual cover-threshold">
+                    <div class="proj-art">
+                        <span class="proj-art-title">BEHIND&nbsp;THE&nbsp;THRESHOLD</span>
+                        <span class="proj-art-tag">PSX&nbsp;HORROR</span>
+                    </div>
+                </div>
+                <div class="proj-info">
+                    <div class="proj-meta">
+                        <span class="proj-cat" data-i18n="games.threshold.cat">ADVENTURE&nbsp;/&nbsp;PSYCHOLOGICAL&nbsp;HORROR</span>
+                        <span class="proj-year">2026</span>
+                    </div>
+                    <h3><a class="proj-title-link" href="behind-the-threshold.html">BEHIND&nbsp;THE&nbsp;THRESHOLD</a></h3>
+                    <p data-i18n="games.threshold.desc">A slow, relentless PSX-style descent into madness. Your own home becomes a trap, and the familiar everyday life bleeds with inexplicable anxiety.</p>
+                    <div class="chip-row">
+                        <span class="chip">WINDOWS</span><span class="chip">PSX</span><span class="chip" data-i18n="games.threshold.chip3">RELEASED</span>
+                    </div>
+                    <div class="link-row">
+                        <button type="button" class="text-link case-open magnetic" data-game="threshold" data-i18n="games.case">CASE&nbsp;&#8599;</button>
+                        <a class="text-link magnetic" href="https://babahwork.itch.io/behind-the-threshold" target="_blank" rel="noopener" data-i18n="games.play">PLAY&nbsp;ON&nbsp;ITCH.IO&nbsp;&nbsp;&rarr;</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="project reveal" data-game="voices">
+                <div class="proj-visual cover-voices">
+                    <div class="proj-art">
+                        <span class="proj-art-title">VOICES&nbsp;OF&nbsp;SILENCE</span>
+                        <span class="proj-art-tag">HORROR</span>
+                    </div>
+                </div>
+                <div class="proj-info">
+                    <div class="proj-meta">
+                        <span class="proj-cat" data-i18n="games.voices.cat">PSYCHOLOGICAL&nbsp;HORROR</span>
+                        <span class="proj-year">2025</span>
+                    </div>
+                    <h3><a class="proj-title-link" href="voices-of-silence.html">VOICES&nbsp;OF&nbsp;SILENCE</a></h3>
+                    <p data-i18n="games.voices.desc">Five days in an old house. Distant whispers grow closer with every dawn — a journey into sensory deprivation, silence and paranoia.</p>
+                    <div class="chip-row">
+                        <span class="chip">WINDOWS</span><span class="chip">LINUX</span><span class="chip">PSX</span>
+                    </div>
+                    <div class="link-row">
+                        <button type="button" class="text-link case-open magnetic" data-game="voices" data-i18n="games.case">CASE&nbsp;&#8599;</button>
+                        <a class="text-link magnetic" href="https://babahwork.itch.io/voices-of-silence" target="_blank" rel="noopener" data-i18n="games.play">PLAY&nbsp;ON&nbsp;ITCH.IO&nbsp;&nbsp;&rarr;</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="project project-rev reveal" data-game="echoes">
+                <div class="proj-visual cover-echoes">
+                    <div class="proj-art">
+                        <span class="proj-art-title">ECHOES&nbsp;OF&nbsp;FEARS</span>
+                        <span class="proj-art-tag">HORROR</span>
+                    </div>
+                </div>
+                <div class="proj-info">
+                    <div class="proj-meta">
+                        <span class="proj-cat" data-i18n="games.echoes.cat">HORROR&nbsp;/&nbsp;NARRATIVE</span>
+                        <span class="proj-year">2025</span>
+                    </div>
+                    <h3><a class="proj-title-link" href="echoes-of-fears.html">ECHOES&nbsp;OF&nbsp;FEARS</a></h3>
+                    <p data-i18n="games.echoes.desc">A short PSX-style horror at a mysterious gas station. Three endings, a story mode and EN/RU localization.</p>
+                    <div class="chip-row">
+                        <span class="chip">WINDOWS</span><span class="chip">PSX</span><span class="chip" data-i18n="games.echoes.chip3">3&nbsp;ENDINGS</span>
+                    </div>
+                    <div class="link-row">
+                        <button type="button" class="text-link case-open magnetic" data-game="echoes" data-i18n="games.case">CASE&nbsp;&#8599;</button>
+                        <a class="text-link magnetic" href="https://babahwork.itch.io/echoes-of-fears" target="_blank" rel="noopener" data-i18n="games.play">PLAY&nbsp;ON&nbsp;ITCH.IO&nbsp;&nbsp;&rarr;</a>
+                    </div>
+                </div>
+            </article>
+
+            <div class="stack-row reveal">
+                <span class="stack-item" data-i18n="stack.1">GAMEPLAY&nbsp;PROGRAMMING</span>
+                <span class="stack-sep"></span>
+                <span class="stack-item" data-i18n="stack.2">SYSTEMS&nbsp;&amp;&nbsp;TOOLS</span>
+                <span class="stack-sep"></span>
+                <span class="stack-item" data-i18n="stack.3">OPTIMIZATION</span>
+                <span class="stack-sep"></span>
+                <span class="stack-item" data-i18n="stack.4">CROSS-PLATFORM</span>
+            </div>
+        </section>
+
+        <section id="wip" class="wip-section">
+            <div class="section-head reveal">
+                <span class="section-label" data-i18n="wip.label">02&nbsp;&middot;&nbsp;IN&nbsp;DEVELOPMENT</span>
+                <h2 data-i18n="wip.head">NEXT&nbsp;PROJECT</h2>
+            </div>
+
+            <div class="wip-card reveal">
+                <div class="wip-visual">
+                    <div class="wip-bg" aria-hidden="true"></div>
+                    <div class="wip-art">
+                        <span class="wip-art-title">UNTITLED</span>
+                        <span class="wip-art-tag">WIP&nbsp;&middot;&nbsp;UNITY</span>
+                    </div>
+                </div>
+                <div class="wip-info">
+                    <p class="wip-desc" data-i18n="wip.desc">A dark atmospheric prototype is on the workbench right now. One more sleepless night — and one more nightmare ready to ship.</p>
+                    <div class="wip-stages-head">
+                        <span class="wip-now" data-i18n="wip.current">CURRENT&nbsp;STAGE</span>
+                        <span class="wip-now-value" data-i18n="wip.stage2">PROTOTYPE</span>
+                    </div>
+                    <div class="wip-stages" role="list">
+                        <div class="wip-stage"><span class="wip-dot" aria-hidden="true"></span><span class="wip-stage-label" data-i18n="wip.stage1">IDEA</span></div>
+                        <div class="wip-stage is-active"><span class="wip-dot" aria-hidden="true"></span><span class="wip-stage-label" data-i18n="wip.stage2">PROTOTYPE</span></div>
+                        <div class="wip-stage"><span class="wip-dot" aria-hidden="true"></span><span class="wip-stage-label" data-i18n="wip.stage3">POLISH</span></div>
+                        <div class="wip-stage"><span class="wip-dot" aria-hidden="true"></span><span class="wip-stage-label" data-i18n="wip.stage4">RELEASE</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="ornament-strip" aria-hidden="true"></div>
+
+        <footer id="contact" class="contact-section">
+            <h2 class="contact-title reveal">
+                <span class="block" data-i18n="contact.title1">LET'S&nbsp;MAKE&nbsp;SOMETHING</span>
+                <span class="block grad" data-i18n="contact.title2">PLAYABLE.</span>
+            </h2>
+            <div class="contact-actions reveal">
+                <a href="mailto:babahworkcompany@gmail.com" class="btn-cta magnetic" data-i18n="contact.cta">START&nbsp;A&nbsp;CONVERSATION&nbsp;&rarr;</a>
+            </div>
+            <div class="footer-line reveal">
+                <span data-i18n="footer.copyright">&copy;&nbsp;BABAH&nbsp;WORK&nbsp;2026</span>
+                <span class="footer-email">babahworkcompany@gmail.com</span>
+                <span class="footer-made" data-i18n="footer.made">MADE&nbsp;WITH&nbsp;PRIDE&nbsp;IN&nbsp;BELARUS&nbsp;&#127463;&#127478;</span>
+            </div>
+        </footer>
+    </main>
+
+    <div class="modal" id="case-modal" aria-hidden="true">
+        <div class="modal-backdrop" data-close></div>
+        <div class="modal-panel" role="dialog" aria-modal="true" data-lenis-prevent-wheel data-lenis-prevent-touch>
+            <button type="button" class="modal-close" data-close aria-label="Close">&times;</button>
+            <div class="modal-body" id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

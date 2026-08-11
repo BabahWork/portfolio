@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const onScroll = () => {
         const scrolled = isMobile || !lenis ? window.scrollY : lenis.scroll;
+        document.querySelector('header').classList.toggle('is-scrolled', scrolled > 40);
         const max = document.documentElement.scrollHeight - window.innerHeight;
         if (progressBar) {
             progressBar.style.transform = `scaleX(${Math.min(1, max > 0 ? scrolled / max : 0)})`;

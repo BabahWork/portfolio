@@ -184,6 +184,10 @@ a:focus-visible, .btn-cta:focus-visible { outline: 2px solid var(--cyan); outlin
 .btn-cta { display: inline-block; font-family: var(--font-h); font-weight: 600; font-size: 0.9rem; letter-spacing: 2px; color: #000; text-decoration: none; background: var(--grad); padding: 20px 38px; border-radius: 100px; transition: transform 0.3s ease, box-shadow 0.3s ease; }
 .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 20px 50px rgba(77,217,255,0.25); }
 
+.socials { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 44px; }
+.social-link { font-family: var(--font-h); font-size: 0.72rem; font-weight: 600; letter-spacing: 2px; color: var(--transl); text-decoration: none; border: 1px solid var(--border); border-radius: 100px; padding: 12px 24px; transition: color 0.3s, border-color 0.3s, box-shadow 0.3s, transform 0.3s ease; }
+.social-link:hover { color: #fff; border-color: rgba(77,217,255,0.5); box-shadow: 0 0 30px rgba(77,217,255,0.15); transform: translateY(-2px); }
+
 .footer-line { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; width: 100%; max-width: 1300px; border-top: 1px solid var(--border); padding-top: 30px; margin-top: 120px; font-size: 0.75rem; letter-spacing: 1px; color: var(--transl); }
 .footer-made { color: var(--dim); }
 

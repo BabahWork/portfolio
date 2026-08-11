@@ -645,7 +645,7 @@ if (!i18n[currentLang]) currentLang = 'en';
         });
         if (added) {
             const stats = document.querySelectorAll('.hero-stats .stat');
-            const num = stats[1] && stats[1].querySelector('.stat-num');
+            const num = stats[0] && stats[0].querySelector('.stat-num');
             if (num) num.textContent = String(list.length).padStart(2, '0');
         }
     }

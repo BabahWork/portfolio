@@ -49,6 +49,7 @@
     <header>
         <nav class="nav-inner">
             <a href="#top" class="logo">BABAH<span>//</span>WORK</a>
+            <button type="button" class="menu-toggle" id="menu-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
             <div class="nav-right">
                 <div class="lang-switch" role="group" aria-label="Language">
                     <button type="button" class="lang-btn is-active" data-lang="en">EN</button>
@@ -63,6 +64,19 @@
             </div>
         </nav>
     </header>
+
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+        <nav class="mobile-menu-nav">
+            <a href="#work" data-i18n="nav.work">WORK</a>
+            <a href="#wip" data-i18n="nav.now">NOW</a>
+            <a href="#contact" class="mobile-menu-cta" data-i18n="nav.contact">CONTACT</a>
+        </nav>
+        <div class="mobile-menu-socials">
+            <a href="https://t.me/BabahWork" target="_blank" rel="noopener">TELEGRAM&nbsp;&#8599;</a>
+            <a href="https://x.com/MisterMatwey" target="_blank" rel="noopener">X&nbsp;&#8599;</a>
+            <a href="https://babahwork.itch.io" target="_blank" rel="noopener">ITCH.IO&nbsp;&#8599;</a>
+        </div>
+    </div>
 
     <main>
         <section id="top" class="hero">

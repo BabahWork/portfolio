@@ -26,56 +26,34 @@
 
     <nav class="gpage-nav">
         <a class="logo" href="index.html">BABAH<span>//</span>WORK</a>
-        <a class="gpage-back" href="index.html">&larr;&nbsp;BACK</a>
+        <a class="gpage-back" href="index.html">BACK&nbsp;TO&nbsp;PORTFOLIO&nbsp;&larr;</a>
     </nav>
 
     <main>
         <section class="gpage-hero">
             <div class="gpage-art" style="background-image:linear-gradient(135deg, rgba(77,217,255,0.25) 0%, rgba(157,107,255,0.22) 55%, rgba(255,107,214,0.18) 100%);"></div>
-            <div class="gpage-hero-grad" aria-hidden="true"></div>
-            <div class="gpage-hero-inner">
-                <div class="gpage-topline">
-                    <span class="gpage-label">BABAH&nbsp;WORK</span>
-                </div>
+            <div class="gpage-info">
+                <span class="gpage-label">BABAH&nbsp;WORK</span>
                 <h1 class="gpage-title">Test</h1>
                 <div class="gpage-chips">
                     <span>ITCH.IO</span>
                 </div>
                 <p class="gpage-desc">An atmospheric horror experience by BABAH WORK.</p>
-                <div class="gpage-cta">
-                    <a class="btn-cta" href="https://babahwork.itch.io/test" target="_blank" rel="noopener">PLAY&nbsp;ON&nbsp;ITCH.IO&nbsp;&nbsp;&rarr;</a>
-                    <button type="button" class="gpage-share">SHARE&nbsp;&#8599;</button>
-                </div>
+                <div class="gpage-cta"><a class="btn-cta" href="https://babahwork.itch.io/test" target="_blank" rel="noopener">PLAY&nbsp;ON&nbsp;ITCH.IO&nbsp;&nbsp;&rarr;</a></div>
             </div>
         </section>
 
         <section class="gpage-feats">
-            <div class="gpage-sec-head">
-                <span class="gpage-sec-label">GAMEPLAY</span>
-                <h2 class="gpage-h2">FEATURES</h2>
-            </div>
+            <h2 class="gpage-h2">FEATURES</h2>
             <ul>
                 
             </ul>
         </section>
 
         <section class="gpage-ru">
-            <div class="gpage-sec-head">
-                <span class="gpage-sec-label">&#1056;&#1091;&#1089;.</span>
-                <h2 class="gpage-h2">О&nbsp;игре&nbsp;на&nbsp;русском</h2>
-            </div>
-            <div class="gpage-ru-body">
-                <p></p>
-                
-            </div>
-        </section>
-
-        <section class="gpage-cta-band">
-            <h2 class="gpage-cta-band-title">READY&nbsp;TO&nbsp;PLAY?</h2>
-            <div class="gpage-cta-band-actions">
-                <a class="btn-cta" href="https://babahwork.itch.io/test" target="_blank" rel="noopener">PLAY&nbsp;ON&nbsp;ITCH.IO&nbsp;&nbsp;&rarr;</a>
-                <a class="gpage-cta-band-back" href="index.html">BACK&nbsp;TO&nbsp;PORTFOLIO&nbsp;&larr;</a>
-            </div>
+            <h2>О&nbsp;игре&nbsp;на&nbsp;русском</h2>
+            <p></p>
+            
         </section>
     </main>
 
@@ -84,23 +62,5 @@
         <span>MADE&nbsp;WITH&nbsp;PRIDE&nbsp;IN&nbsp;BELARUS</span>
         <a href="mailto:babahworkcompany@gmail.com">babahworkcompany@gmail.com</a>
     </footer>
-    <script>
-        (function () {
-            var btn = document.querySelector('.gpage-share');
-            if (!btn) return;
-            btn.addEventListener('click', function () {
-                var url = location.href;
-                if (navigator.share) {
-                    navigator.share({ title: document.title, url: url }).catch(function () {});
-                } else if (navigator.clipboard) {
-                    navigator.clipboard.writeText(url).then(function () {
-                        var old = btn.innerHTML;
-                        btn.innerHTML = 'COPIED!';
-                        setTimeout(function () { btn.innerHTML = old; }, 1600);
-                    });
-                }
-            });
-        })();
-    </script>
 </body>
 </html>

@@ -20,46 +20,76 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Unbounded:wght@600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script>
+    (function () {
+        try {
+            var a = JSON.parse(localStorage.getItem('bw-access') || 'null');
+            if (!a || !a.exp || a.exp < Date.now()) {
+                location.replace('lock.html?ref=voices-of-silence.html');
+            }
+        } catch (e) {
+            location.replace('lock.html?ref=voices-of-silence.html');
+        }
+    })();
+    </script>
 </head>
 <body class="game-page">
     <div class="noise" aria-hidden="true"></div>
 
     <nav class="gpage-nav">
         <a class="logo" href="index.html">BABAH<span>//</span>WORK</a>
-        <a class="gpage-back" href="index.html">BACK&nbsp;TO&nbsp;PORTFOLIO&nbsp;&larr;</a>
+        <a class="gpage-back" href="index.html">&larr;&nbsp;BACK</a>
     </nav>
 
     <main>
         <section class="gpage-hero">
             <div class="gpage-art" style="background-image:linear-gradient(180deg, rgba(6,7,12,0.15) 0%, rgba(6,7,12,0.55) 100%), url('https://img.itch.zone/aW1nLzIzNzY0MzM1LnBuZw==/original/7tcW9R.png');"></div>
-            <div class="gpage-info">
-                <span class="gpage-label">BABAH&nbsp;WORK&nbsp;&middot;&nbsp;2025</span>
+            <div class="gpage-hero-grad" aria-hidden="true"></div>
+            <div class="gpage-hero-inner">
+                <div class="gpage-topline">
+                    <span class="gpage-label">BABAH&nbsp;WORK&nbsp;&middot;&nbsp;2025</span>
+                </div>
                 <h1 class="gpage-title">Voices Of Silence</h1>
                 <div class="gpage-chips">
                     <span>PSYCHOLOGICAL HORROR</span><span>WINDOWS</span><span>LINUX</span>
                 </div>
                 <p class="gpage-desc">Five days in an old house. Distant whispers grow closer with every dawn — a journey into sensory deprivation, silence and paranoia.</p>
-                <div class="gpage-cta"><a class="btn-cta" href="https://babahwork.itch.io/voices-of-silence" target="_blank" rel="noopener">PLAY&nbsp;ON&nbsp;ITCH.IO&nbsp;&nbsp;&rarr;</a></div>
+                <div class="gpage-cta">
+                    <a class="btn-cta" href="https://babahwork.itch.io/voices-of-silence" target="_blank" rel="noopener">PLAY&nbsp;ON&nbsp;ITCH.IO&nbsp;&nbsp;&rarr;</a>
+                    <button type="button" class="gpage-share">SHARE&nbsp;&#8599;</button>
+                </div>
             </div>
         </section>
 
         <section class="gpage-feats">
-            <h2 class="gpage-h2">FEATURES</h2>
+            <div class="gpage-sec-head">
+                <span class="gpage-sec-label">GAMEPLAY</span>
+                <h2 class="gpage-h2">FEATURES</h2>
+            </div>
             <ul>
-                <li>Five-day narrative structure</li>
-                <li>Dynamic audio: whispers react to your actions</li>
-                <li>Minimalist visuals, maximum tension</li>
+                <li><span class="gpage-feat-text">Five-day narrative structure</span></li>
+                <li><span class="gpage-feat-text">Dynamic audio: whispers react to your actions</span></li>
+                <li><span class="gpage-feat-text">Minimalist visuals, maximum tension</span></li>
             </ul>
         </section>
 
         <section class="gpage-ru">
-            <h2>О&nbsp;игре&nbsp;на&nbsp;русском</h2>
-            <p>Пять дней в старом доме. С каждым рассветом далёкие шёпоты всё ближе — путешествие в сенсорную депривацию, тишину и паранойю.</p>
-            <ul>
-<li>Пятидневная структура сюжета</li>
-<li>Динамичный звук: шёпот реагирует на ваши действия</li>
-<li>Минималистичная графика, максимальное напряжение</li>
-            </ul>
+            <div class="gpage-sec-head">
+                <span class="gpage-sec-label">&#1056;&#1091;&#1089;.</span>
+                <h2 class="gpage-h2">О&nbsp;игре&nbsp;на&nbsp;русском</h2>
+            </div>
+            <div class="gpage-ru-body">
+                <p>Пять дней в старом доме. С каждым рассветом далёкие шёпоты всё ближе — путешествие в сенсорную депривацию, тишину и паранойю.</p>
+                <div class="gpage-ru-chips"><span>Пятидневная структура сюжета</span><span>Динамичный звук: шёпот реагирует на ваши действия</span><span>Минималистичная графика, максимальное напряжение</span></div>
+            </div>
+        </section>
+
+        <section class="gpage-cta-band">
+            <h2 class="gpage-cta-band-title">READY&nbsp;TO&nbsp;PLAY?</h2>
+            <div class="gpage-cta-band-actions">
+                <a class="btn-cta" href="https://babahwork.itch.io/voices-of-silence" target="_blank" rel="noopener">PLAY&nbsp;ON&nbsp;ITCH.IO&nbsp;&nbsp;&rarr;</a>
+                <a class="gpage-cta-band-back" href="index.html">BACK&nbsp;TO&nbsp;PORTFOLIO&nbsp;&larr;</a>
+            </div>
         </section>
     </main>
 
@@ -68,5 +98,23 @@
         <span>MADE&nbsp;WITH&nbsp;PRIDE&nbsp;IN&nbsp;BELARUS</span>
         <a href="mailto:babahworkcompany@gmail.com">babahworkcompany@gmail.com</a>
     </footer>
+    <script>
+        (function () {
+            var btn = document.querySelector('.gpage-share');
+            if (!btn) return;
+            btn.addEventListener('click', function () {
+                var url = location.href;
+                if (navigator.share) {
+                    navigator.share({ title: document.title, url: url }).catch(function () {});
+                } else if (navigator.clipboard) {
+                    navigator.clipboard.writeText(url).then(function () {
+                        var old = btn.innerHTML;
+                        btn.innerHTML = 'COPIED!';
+                        setTimeout(function () { btn.innerHTML = old; }, 1600);
+                    });
+                }
+            });
+        })();
+    </script>
 </body>
 </html>

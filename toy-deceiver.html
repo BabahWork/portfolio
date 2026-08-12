@@ -20,46 +20,76 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Unbounded:wght@600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script>
+    (function () {
+        try {
+            var a = JSON.parse(localStorage.getItem('bw-access') || 'null');
+            if (!a || !a.exp || a.exp < Date.now()) {
+                location.replace('lock.html?ref=toy-deceiver.html');
+            }
+        } catch (e) {
+            location.replace('lock.html?ref=toy-deceiver.html');
+        }
+    })();
+    </script>
 </head>
 <body class="game-page">
     <div class="noise" aria-hidden="true"></div>
 
     <nav class="gpage-nav">
         <a class="logo" href="index.html">BABAH<span>//</span>WORK</a>
-        <a class="gpage-back" href="index.html">BACK&nbsp;TO&nbsp;PORTFOLIO&nbsp;&larr;</a>
+        <a class="gpage-back" href="index.html">&larr;&nbsp;BACK</a>
     </nav>
 
     <main>
         <section class="gpage-hero">
             <div class="gpage-art" style="background-image:linear-gradient(180deg, rgba(6,7,12,0.15) 0%, rgba(6,7,12,0.55) 100%), url('https://img.itch.zone/aW1nLzIzNjAzMTc4LnBuZw==/original/Hz5arn.png');"></div>
-            <div class="gpage-info">
-                <span class="gpage-label">BABAH&nbsp;WORK&nbsp;&middot;&nbsp;2025</span>
+            <div class="gpage-hero-grad" aria-hidden="true"></div>
+            <div class="gpage-hero-inner">
+                <div class="gpage-topline">
+                    <span class="gpage-label">BABAH&nbsp;WORK&nbsp;&middot;&nbsp;2025</span>
+                </div>
                 <h1 class="gpage-title">Toy Deceiver</h1>
                 <div class="gpage-chips">
                     <span>PSYCHOLOGICAL HORROR</span><span>STRATEGY</span><span>WINDOWS</span>
                 </div>
                 <p class="gpage-desc">A psychological horror and detective story about lies, observation and inevitability. Every night the toys come alive — watch them, find the deceiver among them, and survive until dawn.</p>
-                <div class="gpage-cta"><a class="btn-cta" href="https://babahwork.itch.io/toy-deceiver" target="_blank" rel="noopener">PLAY&nbsp;ON&nbsp;ITCH.IO&nbsp;&nbsp;&rarr;</a></div>
+                <div class="gpage-cta">
+                    <a class="btn-cta" href="https://babahwork.itch.io/toy-deceiver" target="_blank" rel="noopener">PLAY&nbsp;ON&nbsp;ITCH.IO&nbsp;&nbsp;&rarr;</a>
+                    <button type="button" class="gpage-share">SHARE&nbsp;&#8599;</button>
+                </div>
             </div>
         </section>
 
         <section class="gpage-feats">
-            <h2 class="gpage-h2">FEATURES</h2>
+            <div class="gpage-sec-head">
+                <span class="gpage-sec-label">GAMEPLAY</span>
+                <h2 class="gpage-h2">FEATURES</h2>
+            </div>
             <ul>
-                <li>Day / night investigation loop — watch the toys while the light lasts</li>
-                <li>Unique toy AI and deception logic — anyone can be the deceiver</li>
-                <li>Atmosphere-driven horror without cheap jumpscares</li>
+                <li><span class="gpage-feat-text">Day / night investigation loop — watch the toys while the light lasts</span></li>
+                <li><span class="gpage-feat-text">Unique toy AI and deception logic — anyone can be the deceiver</span></li>
+                <li><span class="gpage-feat-text">Atmosphere-driven horror without cheap jumpscares</span></li>
             </ul>
         </section>
 
         <section class="gpage-ru">
-            <h2>О&nbsp;игре&nbsp;на&nbsp;русском</h2>
-            <p>Психологический хоррор и детектив о лжи, наблюдении и неотвратимости. Каждую ночь игрушки оживают — следи за ними, найди обманщика среди них и доживи до рассвета.</p>
-            <ul>
-<li>Цикл расследования день / ночь</li>
-<li>Уникальный ИИ игрушек и логика обмана</li>
-<li>Атмосферный хоррор без дешёвых скримеров</li>
-            </ul>
+            <div class="gpage-sec-head">
+                <span class="gpage-sec-label">&#1056;&#1091;&#1089;.</span>
+                <h2 class="gpage-h2">О&nbsp;игре&nbsp;на&nbsp;русском</h2>
+            </div>
+            <div class="gpage-ru-body">
+                <p>Психологический хоррор и детектив о лжи, наблюдении и неотвратимости. Каждую ночь игрушки оживают — следи за ними, найди обманщика среди них и доживи до рассвета.</p>
+                <div class="gpage-ru-chips"><span>Цикл расследования день / ночь</span><span>Уникальный ИИ игрушек и логика обмана</span><span>Атмосферный хоррор без дешёвых скримеров</span></div>
+            </div>
+        </section>
+
+        <section class="gpage-cta-band">
+            <h2 class="gpage-cta-band-title">READY&nbsp;TO&nbsp;PLAY?</h2>
+            <div class="gpage-cta-band-actions">
+                <a class="btn-cta" href="https://babahwork.itch.io/toy-deceiver" target="_blank" rel="noopener">PLAY&nbsp;ON&nbsp;ITCH.IO&nbsp;&nbsp;&rarr;</a>
+                <a class="gpage-cta-band-back" href="index.html">BACK&nbsp;TO&nbsp;PORTFOLIO&nbsp;&larr;</a>
+            </div>
         </section>
     </main>
 
@@ -68,5 +98,23 @@
         <span>MADE&nbsp;WITH&nbsp;PRIDE&nbsp;IN&nbsp;BELARUS</span>
         <a href="mailto:babahworkcompany@gmail.com">babahworkcompany@gmail.com</a>
     </footer>
+    <script>
+        (function () {
+            var btn = document.querySelector('.gpage-share');
+            if (!btn) return;
+            btn.addEventListener('click', function () {
+                var url = location.href;
+                if (navigator.share) {
+                    navigator.share({ title: document.title, url: url }).catch(function () {});
+                } else if (navigator.clipboard) {
+                    navigator.clipboard.writeText(url).then(function () {
+                        var old = btn.innerHTML;
+                        btn.innerHTML = 'COPIED!';
+                        setTimeout(function () { btn.innerHTML = old; }, 1600);
+                    });
+                }
+            });
+        })();
+    </script>
 </body>
 </html>

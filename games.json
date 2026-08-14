@@ -5,7 +5,24 @@
     "slug": "behind-the-threshold",
     "url": "https://babahwork.itch.io/behind-the-threshold",
     "short": "Alone in an imaginary world",
-    "cover": "https://img.itch.zone/aW1nLzI1OTc4MTkwLnBuZw==/original/YSemQN.png",
+    "cover": "https://img.itch.zone/aW1nLzI1OTc4MTkwLnBuZw==/315x250%23c/WBikVl.png",
+    "year": "2026",
+    "platforms": {
+      "windows": false,
+      "mac": false,
+      "linux": false,
+      "android": false,
+      "web": false
+    },
+    "genre": "GAME"
+  },
+  {
+    "id": 4895804,
+    "title": "Echoes of Fears: Unburied",
+    "slug": "echoes-of-fears-unburied",
+    "url": "https://babahwork.itch.io/echoes-of-fears-unburied",
+    "short": "That maniac again.",
+    "cover": "https://img.itch.zone/aW1nLzI5MjY5NjMyLnBuZw==/315x250%23c/l4AlHB.png",
     "year": "2026",
     "platforms": {
       "windows": false,
@@ -58,23 +75,6 @@
     "short": "",
     "cover": "https://img.itch.zone/aW1nLzIzNzY0MzM1LnBuZw==/315x250%23c/ybGt7t.png",
     "year": "2025",
-    "platforms": {
-      "windows": false,
-      "mac": false,
-      "linux": false,
-      "android": false,
-      "web": false
-    },
-    "genre": "GAME"
-  },
-  {
-    "id": 4886613,
-    "title": "Test",
-    "slug": "test",
-    "url": "https://babahwork.itch.io/test",
-    "short": "",
-    "cover": "",
-    "year": "",
     "platforms": {
       "windows": false,
       "mac": false,

@@ -7,7 +7,7 @@ const ROOT = path.join(__dirname, '..');
 const games = JSON.parse(fs.readFileSync(path.join(ROOT, 'games.json'), 'utf8'));
 const DOMAIN = 'https://babahwork.is-a.dev';
 
-const FAVICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%234dd9ff'/%3E%3Cstop offset='1' stop-color='%239d6bff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='%23050506'/%3E%3Cpath d='M18 20h28v6H26v8h18v6H26v10h-8z' fill='url(%23g)'/%3E%3C/svg%3E";
+const FAVICON = "favicon.png";
 const FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com">\n    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Unbounded:wght@600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">';
 
 const KNOWN = {
@@ -86,6 +86,25 @@ const KNOWN = {
                 'Короткая сессия — один вечер, один кошмар'
             ]
         }
+    },
+    'echoes-of-fears-unburied': {
+        chips: ['HORROR', 'PSYCHOLOGICAL HORROR', 'PSX'],
+        en: {
+            desc: 'The maniac is back. A new PSX-style nightmare picks up where the original Echoes of Fears left off — deeper in the dark, closer to the truth.',
+            feats: [
+                'Direct continuation of the Echoes of Fears story',
+                'New locations and a more twisted investigation',
+                'Atmosphere-driven horror, PSX aesthetic'
+            ]
+        },
+        ru: {
+            desc: 'Маньяк вернулся. Новый кошмар в стиле PSX продолжает историю Echoes of Fears — глубже во тьме, ближе к правде.',
+            feats: [
+                'Прямое продолжение истории Echoes of Fears',
+                'Новые локации и более мрачное расследование',
+                'Атмосферный хоррор с эстетикой PSX'
+            ]
+        }
     }
 };
 
@@ -113,6 +132,35 @@ const kindFor = chips => {
 
 const slugOf = g => (g.slug || (g.url || '').split('/').filter(Boolean).pop() || 'game').toLowerCase();
 
+function buildLdJson(title, kind, enDesc, cover, itchUrl, pageUrl, chips, g) {
+    const plats = ['windows', 'mac', 'linux', 'android', 'web']
+        .filter(p => (g.platforms || {})[p])
+        .map(p => p.toUpperCase());
+    const data = {
+        '@context': 'https://schema.org',
+        '@type': 'VideoGame',
+        name: title,
+        description: enDesc,
+        url: itchUrl,
+        image: cover || undefined,
+        genre: (chips && chips.length ? chips.join(', ') : kind),
+        gamePlatform: plats.length ? plats : ['Windows'],
+        operatingSystem: plats.join(', ') || 'Windows',
+        applicationCategory: 'Game',
+        inLanguage: 'EN',
+        author: { '@type': 'Organization', name: 'BABAH WORK', url: DOMAIN + '/' },
+        publisher: { '@type': 'Organization', name: 'BABAH WORK', url: DOMAIN + '/' },
+        offers: {
+            '@type': 'Offer',
+            price: '0',
+            priceCurrency: 'USD',
+            availability: 'https://schema.org/InStock',
+            url: itchUrl
+        }
+    };
+    return '<script type="application/ld+json">' + JSON.stringify(data) + '</script>';
+}
+
 function buildPage(g) {
     const slug = slugOf(g);
     const known = KNOWN[slug] || {};
@@ -133,9 +181,9 @@ function buildPage(g) {
     const ruFeats = known.ru ? known.ru.feats : [];
 
     const metaDesc = (enDesc.length > 148 ? enDesc.slice(0, 148) + '…' : enDesc) + ' Unity / C#. Play it free on itch.io.';
-    const featsHtml = enFeats.map(f => '<li>' + escapeHtml(f) + '</li>').join('\n                ');
+    const featsHtml = enFeats.map(f => '<li><span class="gpage-feat-text">' + escapeHtml(f) + '</span></li>').join('\n                ');
     const ruFeatsHtml = ruFeats.length
-        ? '<ul>\n' + ruFeats.map(f => '<li>' + escapeHtml(f) + '</li>').join('\n') + '\n            </ul>'
+        ? '<div class="gpage-ru-chips">' + ruFeats.map(f => '<span>' + escapeHtml(f) + '</span>').join('') + '</div>'
         : '';
 
     return `<!DOCTYPE html>
@@ -153,43 +201,80 @@ function buildPage(g) {
     <meta property="og:url" content="${pageUrl}">
     <meta property="og:image" content="${cover}">
     <meta name="twitter:card" content="summary_large_image">
-    <link rel="icon" href="${FAVICON}">
+    ${buildLdJson(title, kind, enDesc, cover, itchUrl, pageUrl, chips, g)}
+    <link rel="icon" href="${FAVICON}" type="image/png">
+    <link rel="apple-touch-icon" href="${FAVICON}">
     ${FONTS}
     <link rel="stylesheet" href="style.css">
+    <script>
+    (function () {
+        if (/bot|crawl|spider|slurp|googlebot|bingbot|yandex|baidu|duckduckbot|facebookexternalhit|twitterbot|whatsapp|telegram|linkedinbot|pinterest|ahrefs|semrush|mj12|dotbot/i.test(navigator.userAgent)) return;
+        try {
+            var a = JSON.parse(localStorage.getItem('bw-access') || 'null');
+            if (!a || !a.exp || a.exp < Date.now()) {
+                location.replace('lock.html?ref=${slug}.html');
+            }
+        } catch (e) {
+            location.replace('lock.html?ref=${slug}.html');
+        }
+    })();
+    </script>
 </head>
 <body class="game-page">
     <div class="noise" aria-hidden="true"></div>
 
     <nav class="gpage-nav">
         <a class="logo" href="index.html">BABAH<span>//</span>WORK</a>
-        <a class="gpage-back" href="index.html">BACK&nbsp;TO&nbsp;PORTFOLIO&nbsp;&larr;</a>
+        <a class="gpage-back" href="index.html">&larr;&nbsp;BACK</a>
     </nav>
 
     <main>
         <section class="gpage-hero">
             <div class="gpage-art" style="background-image:${artBg};"></div>
-            <div class="gpage-info">
-                <span class="gpage-label">BABAH&nbsp;WORK${year ? '&nbsp;&middot;&nbsp;' + escapeHtml(year) : ''}</span>
+            <div class="gpage-hero-grad" aria-hidden="true"></div>
+            <div class="gpage-hero-inner">
+                <div class="gpage-topline">
+                    <span class="gpage-label">BABAH&nbsp;WORK${year ? '&nbsp;&middot;&nbsp;' + escapeHtml(year) : ''}</span>
+                </div>
                 <h1 class="gpage-title">${escapeHtml(title)}</h1>
                 <div class="gpage-chips">
                     ${chips.map(c => '<span>' + escapeHtml(c) + '</span>').join('')}
                 </div>
                 <p class="gpage-desc">${escapeHtml(enDesc)}</p>
-                <div class="gpage-cta"><a class="btn-cta" href="${itchUrl}" target="_blank" rel="noopener">PLAY&nbsp;ON&nbsp;ITCH.IO&nbsp;&nbsp;&rarr;</a></div>
+                <div class="gpage-cta">
+                    <a class="btn-cta" href="${itchUrl}" target="_blank" rel="noopener">PLAY&nbsp;ON&nbsp;ITCH.IO&nbsp;&nbsp;&rarr;</a>
+                    <button type="button" class="gpage-share">SHARE&nbsp;&#8599;</button>
+                </div>
             </div>
         </section>
 
         <section class="gpage-feats">
-            <h2 class="gpage-h2">FEATURES</h2>
+            <div class="gpage-sec-head">
+                <span class="gpage-sec-label">GAMEPLAY</span>
+                <h2 class="gpage-h2">FEATURES</h2>
+            </div>
             <ul>
                 ${featsHtml}
             </ul>
         </section>
 
         <section class="gpage-ru">
-            <h2>О&nbsp;игре&nbsp;на&nbsp;русском</h2>
-            <p>${escapeHtml(ruDesc)}</p>
-            ${ruFeatsHtml}
+            <div class="gpage-sec-head">
+                <span class="gpage-sec-label">&#1056;&#1091;&#1089;.</span>
+                <h2 class="gpage-h2">О&nbsp;игре&nbsp;на&nbsp;русском</h2>
+            </div>
+            <div class="gpage-ru-body">
+                <p>${escapeHtml(ruDesc)}</p>
+                ${ruFeatsHtml}
+            </div>
+        </section>
+
+        <section class="gpage-cta-band">
+            <h2 class="gpage-cta-band-title">READY&nbsp;TO&nbsp;PLAY?</h2>
+            <div class="gpage-cta-band-actions">
+                <a class="btn-cta" href="${itchUrl}" target="_blank" rel="noopener">PLAY&nbsp;ON&nbsp;ITCH.IO&nbsp;&nbsp;&rarr;</a>
+                <a class="gpage-cta-band-back" href="index.html">BACK&nbsp;TO&nbsp;PORTFOLIO&nbsp;&larr;</a>
+            </div>
         </section>
     </main>
 
@@ -198,6 +283,24 @@ function buildPage(g) {
         <span>MADE&nbsp;WITH&nbsp;PRIDE&nbsp;IN&nbsp;BELARUS</span>
         <a href="mailto:babahworkcompany@gmail.com">babahworkcompany@gmail.com</a>
     </footer>
+    <script>
+        (function () {
+            var btn = document.querySelector('.gpage-share');
+            if (!btn) return;
+            btn.addEventListener('click', function () {
+                var url = location.href;
+                if (navigator.share) {
+                    navigator.share({ title: document.title, url: url }).catch(function () {});
+                } else if (navigator.clipboard) {
+                    navigator.clipboard.writeText(url).then(function () {
+                        var old = btn.innerHTML;
+                        btn.innerHTML = 'COPIED!';
+                        setTimeout(function () { btn.innerHTML = old; }, 1600);
+                    });
+                }
+            });
+        })();
+    </script>
 </body>
 </html>
 `;
